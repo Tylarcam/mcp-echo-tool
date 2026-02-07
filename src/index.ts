@@ -54,7 +54,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
   const message = request.params.arguments?.message as string;
   
-  if (!message) {
+  if (message === undefined || message === null) {
     throw new Error("Message parameter is required");
   }
 

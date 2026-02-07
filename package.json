@@ -10,17 +10,24 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "tsx src/index.ts"
+    "dev": "tsx src/index.ts",
+    "test": "npm run build && tsx test/index.test.ts",
+    "test:watch": "tsx watch test/index.test.ts"
   },
-  "keywords": ["mcp", "echo", "tool", "model-context-protocol"],
+  "keywords": [
+    "mcp",
+    "echo",
+    "tool",
+    "model-context-protocol"
+  ],
   "author": "tylarcam",
   "license": "MIT",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.5.0"
+    "@modelcontextprotocol/sdk": "^1.26.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "typescript": "^5.0.0",
-    "tsx": "^4.0.0"
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
   }
 }
