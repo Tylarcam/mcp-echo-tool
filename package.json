@@ -1,0 +1,53 @@
+{
+  "name": "mcp-echo-tool-enhanced",
+  "version": "2.0.0",
+  "description": "Enhanced MCP server with echo, formatting, hashing, encoding, and utility tools - 10X version",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "mcp-echo-tool-enhanced": "./dist/index.js",
+    "mcp-echo-10x": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "docker:build": "docker build -t mcp-echo-tool-enhanced .",
+    "docker:run": "docker run -i mcp-echo-tool-enhanced",
+    "test": "node --test dist/**/*.test.js",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "echo",
+    "tool",
+    "model-context-protocol",
+    "utility",
+    "formatting",
+    "hashing",
+    "encoding"
+  ],
+  "author": "tylarcam",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tylarcam/mcp-echo-tool-enhanced"
+  },
+  "bugs": {
+    "url": "https://github.com/tylarcam/mcp-echo-tool-enhanced/issues"
+  },
+  "homepage": "https://github.com/tylarcam/mcp-echo-tool-enhanced#readme"
+}

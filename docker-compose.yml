@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  mcp-echo-tool:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mcp-echo-tool-enhanced:latest
+    container_name: mcp-echo-tool
+    restart: unless-stopped
+    
+    # For stdio-based MCP servers, we typically don't expose ports
+    # But you can add them if you implement HTTP transport later
+    # ports:
+    #   - "3000:3000"
+    
+    # Environment variables
+    environment:
+      - NODE_ENV=production
+      # Add any additional environment variables here
+      
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "node", "-e", "console.log('healthy')"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  # Development service with hot reload
+  mcp-echo-tool-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: mcp-echo-tool-enhanced:dev
+    container_name: mcp-echo-tool-dev
+    volumes:
+      - ./src:/app/src
+      - ./package.json:/app/package.json
+    environment:
+      - NODE_ENV=development
+    profiles:
+      - dev
+    command: ["npm", "run", "dev"]
